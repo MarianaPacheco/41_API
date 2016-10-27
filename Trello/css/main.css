@@ -66,4 +66,12 @@ span{
 .tarjetaTextoh3Style{
 	background-color: #cccccc;
 	border-radius: 4px;
+	cursor: move;
+	z-index: 100;
+	transition: all 0.4s;
+}
+
+.over{
+	box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.4);
+	-webkit-transform: scale(1.1);
 }
