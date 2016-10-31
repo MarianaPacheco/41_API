@@ -1,153 +1,174 @@
-var btnClickInput = document.getElementById('crearLista');
-	btnClickInput.onclick =  crearLista;
+var btnGuardar = document.createElement('button');
+btnGuardar.innerHTML = 'Guardar';
+btnGuardar.setAttribute('class', 'btn');
 
-var crearTarjeta = document.getElementById('crearTarjeta');
+var divNombreLista = document.getElementById('divNombrarLista');
 
-var createInput = document.createElement('input');
-	createInput.setAttribute('id','cajaTexto');
+var inputAddLista = document.createElement('input');
+	inputAddLista.setAttribute('placeholder', 'Añadir una lista...');
+	inputAddLista.setAttribute('autofocus', '');
+	inputAddLista.setAttribute('class', 'img-thumbnail');
 
-var createSpan = document.createElement('span');
- 	createSpan.setAttribute('class', 'fa fa-close');
-function crearLista(){
+function clickInputAddLista(){
 
-	var createForm = document.createElement('div');
-		createForm.setAttribute('class','fondo');
-		
-	var createButton = document.createElement('button');
-		createButton.innerHTML="Guardar";
- 	   	createButton.setAttribute('class','btn btn-default'); 
- 	
- 	// var createSpan = document.createElement('span');
- 	// 	createSpan.setAttribute('class', 'fa fa-close');
+	var divAddLista = document.createElement('div');
+	divAddLista.setAttribute('class', 'divAddLista img-thumbnail noMove');
 
- 	crearTarjeta.appendChild(createForm);
- 	createForm.appendChild(createInput);
- 	createForm.appendChild(createButton);
- 	createForm.appendChild(createSpan);
+	var btnTache = document.createElement('button');
+	var spanTache = document.createElement('span');
+	spanTache.setAttribute('class', 'fa fa-close');
+	btnTache.appendChild(spanTache);
 
-	createButton.onclick = guardar;
-	createSpan.onclick = presionarTache;	
+	divNombreLista.appendChild(divAddLista);
+	divAddLista.appendChild(inputAddLista);
+	divAddLista.appendChild(btnGuardar);
+	divAddLista.appendChild(btnTache);
+
+	quitaBtnAdd = document.getElementById('inputAddLista');	
+	/*Remplaza el input por el div contenedor*/
+	quitaBtnAdd.style.display = 'none';
+	//Usé CSS inline para que no se deba mostrar inputAddLista
+
+	function clickEliminarDivAddLista(){
+		divAddLista.parentNode.removeChild(divAddLista);
+		//NombreDelDivQueVoyAEliminar.parentNode.removeChild(NombreDelDivQueVoyAEliminar);
+		//Le digo al padre de divAddLista (con .parentNode porque no sé quién es su padre) que elimine a divAddLista
+		document.getElementById('inputAddLista').style.display = 'block';
+		//Consigue el id del elemento que quiero mostrar de nuevo, se relacionan las líneas 29 y 36
+	}
+	btnTache.onclick = clickEliminarDivAddLista;
 }
 
-function presionarTache(){
-   	crearTarjeta.parentNode.removeChild(crearTarjeta);
-}
+var cuadroAddLista = document.getElementById('inputAddLista');	
+// Creo una variable para mi caja de texto creada en el html, que llama el id que tiene en html
+cuadroAddLista.onclick = clickInputAddLista;	
+/*Evento para cuando se le de click al cuadro "Añadir lista..." haga la funcion clickInputAddLista*/
 
+var btnEliminar = document.createElement('button');
+var spanEliminar = document.createElement('span');
+spanEliminar.setAttribute('class', 'fa fa-close');
+btnEliminar.appendChild(spanEliminar);
 
-function guardar() {
-	if (createInput.value === "") {
-		createInput.setAttribute('placeholder', 'Ingresa texto válido');
-		return false;
+var textTarjeta = document.createElement('textarea');
+textTarjeta.setAttribute('class', 'img-thumbnail');
+textTarjeta.setAttribute('autofocus', '');
+
+function clickBtnGuardar(){
+
+	if (inputAddLista.value === "" || inputAddLista.value === " " || inputAddLista.value === "null" || inputAddLista.value < 4){
+		alert("Campo obligatorio. Mínimo 4 caracteres."); 
+		return false; 	
+		/*Si esto es falso ya no hagas la función*/
 	} 
 
-	//Crear y asignar atributos
-	var divTarjetaTexto =document.createElement('div');
-		divTarjetaTexto.setAttribute('class', 'fondo');
+	var divAddTarjetas = document.createElement('div');
+	divAddTarjetas.setAttribute('class', 'divAddTarjetas img-thumbnail');
 
-	var h4 = document.createElement('h4');
+	var tituloLista = document.createElement('h3');
+	tituloLista.appendChild(document.createTextNode(inputAddLista.value));
+	//tituloLista.innerHTML = inputAddLista.value;
+	/*Otra forma de hacer el paso anterior*/
 
+	var addTarjeta = document.createElement('a');
+	addTarjeta.innerHTML = 'Añadir una tarjeta';
 
-	var enlaceDentroDiv = document.createElement('a');
-		enlaceDentroDiv.innerHTML="Añade una tarjeta";
-		enlaceDentroDiv.setAttribute('class', 'enlaceDentroDivTarjeta');
+	divNombreLista.appendChild(divAddTarjetas);
+	divAddTarjetas.appendChild(tituloLista); 
+	divAddTarjetas.appendChild(addTarjeta);
 
+	var divAddTarjetas2 = document.createElement('div');
+	divAddTarjetas2.setAttribute('class', 'divAddTarjetas2 img-thumbnail');
 
-	
-	//Guardar o Concatenar todo
-	crearTarjeta.appendChild(divTarjetaTexto);
-	h4.innerHTML = createInput.value;
-	divTarjetaTexto.appendChild(h4);
-	divTarjetaTexto.appendChild(enlaceDentroDiv);
+	var btnAdd = document.createElement('button');
+	btnAdd.innerHTML = 'Añadir';
+	btnAdd.setAttribute('class', 'btn');
 
+	function clickAddTarjeta(){
 
+	divAddTarjetas.appendChild(divAddTarjetas2);
+	divAddTarjetas2.appendChild(tituloLista);
+	divAddTarjetas2.appendChild(textTarjeta);
+	divAddTarjetas2.appendChild(addTarjeta);
+	divAddTarjetas2.appendChild(btnAdd);
+	divAddTarjetas2.appendChild(btnEliminar);
 
-	function changeTarjetVStextarea() {
-		var divTextAreaButtonSpan = document.createElement('div');
+	//addTarjeta.parentNode.removeChild(addTarjeta);
+	}
+	addTarjeta.onclick = clickAddTarjeta;
 
-		var areaTextoCambio = document.createElement('textarea');
-			areaTextoCambio.setAttribute('class', 'areaTextChange');
+	inputAddLista.value = "";
 
-		var buttonDentroDivAnadir = document.createElement('button');
-			buttonDentroDivAnadir.innerHTML="Añadir";
-			buttonDentroDivAnadir.setAttribute('class', 'btn btn-default');
+	function clickEliminarTextArea(){
+		textTarjeta.parentNode.removeChild(textTarjeta);
+		var addTarjetaClon = addTarjeta.cloneNode(true);
+		//nueva variable clon = elemento que quiero clonar.cloneNode(booleano);
+		divAddTarjetas2.insertBefore(addTarjeta, btnAdd);
+		//dentro del divAddTarjetas2 incrustar addTarjeta antes de btnAdd
+	}
+	btnEliminar.onclick = clickEliminarTextArea;
 
+	function clickBtnAdd(){
+		if (textTarjeta.value === "" || textTarjeta.value === " " || textTarjeta.value === "null" || textTarjeta.value > 4){
+			alert("Campo obligatorio. Mínimo 4 caracteres."); 
+			return false; 	
+		}
 
-		divTextAreaButtonSpan.appendChild(areaTextoCambio);
-		divTextAreaButtonSpan.appendChild(buttonDentroDivAnadir);
-		divTextAreaButtonSpan.appendChild(createSpan);
+		var divTextTarjeta = document.createElement('div');
+		divTextTarjeta.setAttribute('id', 'dtt');
+		divTextTarjeta.setAttribute('class', 'divTextTarjeta img-thumbnail');
+		divTextTarjeta.setAttribute('draggable', 'true');
+		/*El atributo draggable es para indicar que ese elemento se puede mover de su lugar*/
+		divTextTarjeta.id = "" + (new Date()).getTime();
 
+		var liTextTarjeta = document.createElement('p');
+		liTextTarjeta.appendChild(document.createTextNode(textTarjeta.value));
 
-		enlaceDentroDiv.appendChild(divTextAreaButtonSpan);
-		enlaceDentroDiv.parentElement.replaceChild(divTextAreaButtonSpan, enlaceDentroDiv);
+		divTextTarjeta.appendChild(liTextTarjeta);
+		//divAddTarjetas2.appendChild(divTextTarjeta);
+		divAddTarjetas2.insertBefore(divTextTarjeta, textTarjeta);
+		//divAddTarjetas2.insertBefore(tituloLista, textTarjeta.childNodes[0]);
 
-		var container;
-		function validarTextAnadirText() {
-			container = document.querySelector('.container');
-			container.addEventListener('dragover', dragSobreContainer, false);
-			container.addEventListener('dragleave', dragSalioContainer, false);
-			container.addEventListener('drop', manejarDrop, false);
-			if ( areaTextoCambio.value == "") {
-				areaTextoCambio.setAttribute('placeholder', 'Ingresa texto tarjeta');
-				return false;
-				//si lo valida2
-			}	
+		/*function clickAddTarjeta2(){
+			divAddTarjetas2.insertBefore(divTextTarjeta, textTarjeta);
+		}
+		addTarjetaClon.onclick = clickAddTarjeta2;*/
 
-		var tarjetaTextoDiv = document.createElement('div');
-			tarjetaTextoDiv.setAttribute('class', 'tarjetaTextoh3Style');
-			tarjetaTextoDiv.setAttribute('draggable', 'true');
-			tarjetaTextoDiv.setAttribute('id', 'tarjetaTextDiv');
+		divAddTarjetas2.ondragover = allowDrop;
+		// Para el elemento en donde colocaré el elemento arrastrado
+		divTextTarjeta.ondragstart = drag;
+		// Para el elemento que voy a arrastrar
+		divTextTarjeta.ondragend = dragend;
+		// Para el elemento en donde colocaré el elemento arrastrado
+		divAddTarjetas2.ondrop = drop;
+		// Para cuando finaliza la función del elemento que arrastro
 
-		var textoh3IncluirTarjeta = document.createElement('h3');
-			textoh3IncluirTarjeta.innerHTML=areaTextoCambio.value;
+		textTarjeta.value = "";
+	}
+	btnAdd.onclick = clickBtnAdd;
 
-
-		divTarjetaTexto.appendChild(tarjetaTextoDiv);
-		tarjetaTextoDiv.appendChild(textoh3IncluirTarjeta);
-
-
-		areaTextoCambio.value = "";
-
-		tarjetaTextoDiv.addEventListener('dragstart', dragIniciado, false);
-		tarjetaTextoDiv.addEventListener('dragend', dragFinalizado, false);
-
-		} 
-		buttonDentroDivAnadir.onclick=validarTextAnadirText;
-
-
-
-
-	} enlaceDentroDiv.onclick = changeTarjetVStextarea;
-
-	function dragIniciado(e){
-			this.style.backgroundColor = 'blue';
+	function allowDrop(ev) {
+    	//this.style.border = '2px dashed black';
+    	ev.preventDefault();
 	}
 
-	function manejarDrop (e){
-		e.preventDefault();
+	function drag(ev) {
+		this.style.backgroundColor = 'rgba(119, 28, 191,.9)';
+	    ev.dataTransfer.setData("text", ev.target.id);
+	    // En este caso, el tipo de datos es "texto" y el valor es el id del elemento arrastrable ( "dtt").
+	}
+	//Hace la función de cambiar a morado el elemento que arrastro cuando lo agarro
+
+	function drop(ev) {
+		//this.style.border = '1px solid gray';
+	    ev.preventDefault();
+	    var data = ev.dataTransfer.getData("text");
+	    ev.target.appendChild(document.getElementById(data));
 	}
 
-	function dragSobreContainer(e){
-		e.preventDefault();
-		this.classList.add('over');
-		return false;
+	function dragend(ev) {
+		this.style.backgroundColor = 'white';
 	}
-
-	function dragSalioContainer(e){
-		this.classList.remove('over');
-	}
-
-	function dragFinalizado(e){
-		
-	}
-	
-
-
-
-
-	//Comenzar en 0 el input de Inicio
-	createInput.value = "";
+	//Hace la función de cambiar a blanco el elemento que arrastro cuando lo suelta
 }
 
-
-
-/*Referencia minuto 13 https://www.youtube.com/watch?v=2YCc29vmNOE*/
+btnGuardar.onclick = clickBtnGuardar;

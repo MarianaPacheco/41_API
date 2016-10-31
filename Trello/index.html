@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-		<title>Trello</title>
-		<!-- <link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.css"> -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/main.css">
-	</head>
-	<body>
-		<header>
-			<div class="container">
-		  		<div class="row">
-					<div class="col-xs-12 col-md-12">
-						<h1>TRELLO</h1>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Hace que mi página sea compatible con Internet Explorer -->
+	<!--  -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trello</title>
+	<!-- <link rel="shortcut icon" href="img/lupa-favicon.png">  "shortcut icon" nos indicaque es tipo icono, relación  -->
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h1 class="text-center">Trello</h1>
+				</div>	
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div>
+						<input id="inputAddLista" class="img-thumbnail" placeholder="Añadir una lista...">
+					</div>
+					<div id = "divNombrarLista">
 					</div>
 				</div>
 			</div>
-		</header>
-		<section>
-			<div class="container">
-		  		<div class="row">
-					<div class="col-md-12">
-						<!-- Crear Lista (derecha) que actua como boton-->
-						<div id="contenedorDiv">
-							<input id="crearLista" class="cajaTextoAzul" type="text" placeholder="Añadir una lista..." >
-						</div>
-						<!-- Crear tarjeta (abajo) que actua como boton-->
-						<div id="crearTarjeta"> 
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--JAVASCRPIT-->
-		<script src="js/main.js"></script>
-	</body>
+		</div>
+	</header>
+	<script src="js/main.js"></script>
+</body>
 </html>
